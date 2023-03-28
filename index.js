@@ -13,6 +13,7 @@ const passport = require('passport');
 const session = require('express-session')
 const cors = require('cors');
 
+app.use(cookieParser());
 app.use(cors());
 app.use(cors({credentials: true, origin: 'http://localhost:3001'}));
 
@@ -32,7 +33,7 @@ app.use(passport.session());
 // Body-parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cookieParser());
+
 
 app.use(express.static(__dirname + "/public"));
 

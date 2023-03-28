@@ -64,7 +64,11 @@ exports.postLogin = tryCatch(async(req,res,next)=>{
         }
        
 
-        return res.cookie("access_token",accessToken).json({
+        return res.cookie("access_token",accessToken,{
+            sameSite:'strict',
+            path:'/',
+            httpOnlu:true
+        }).json({
             status:"Successful as employee",
             token:accessToken,
             data:employee
@@ -88,7 +92,11 @@ exports.postLogin = tryCatch(async(req,res,next)=>{
         const accessToken = jwt.sign({email,password},process.env.ACCESS_TOKEN);
         localStorage.setItem('status', 'employeer');
         console.log(localStorage.getItem('status'));
-        return res.cookie("access_token",accessToken).json({
+        return res.cookie("access_token",accessToken,{
+            sameSite:'strict',
+            path:'/',
+            httpOnlu:true
+        }).json({
             status:"Successful as employee",
             token:accessToken,
             data:employeer
