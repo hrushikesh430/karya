@@ -14,7 +14,7 @@ const session = require('express-session')
 const cors = require('cors');
 
 app.use(cookieParser());
-app.use(cors());
+// app.use(cors())
 app.use(cors({credentials: true, origin: 'http://localhost:3001'}));
 
 

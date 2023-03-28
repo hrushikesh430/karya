@@ -17,6 +17,8 @@ const employeerProfile = require('../controllers/employeer/employeerProfile');
 const employeerAboutMe = require('../controllers/employeer/employeerAboutMe');
 const jobPostForm = require('../controllers/employeer/jobPostForm');
 const singlePost = require('../controllers/employeer/singlePost');
+const applicantList = require('../controllers/employeer/applicantList');
+const assignedList = require('../controllers/employeer/assignedList');
 const cookieParser = require("cookie-parser");
 
 
@@ -53,4 +55,10 @@ router.post('/acceptEmployee',autheticationToken,acceptEmployee.postAcceptEmploy
 
 // single post data
 router.post('/singlePost',autheticationToken,singlePost.postSinglePost);
+
+// list the info of applicant 
+router.post('/applicantList',autheticationToken,applicantList.postApplicantList)
+
+// list the info of assigned employees
+router.post('/assignedList',autheticationToken,assignedList.postAssignedList);
 module.exports = router;   

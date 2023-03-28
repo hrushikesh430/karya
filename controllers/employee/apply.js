@@ -31,7 +31,7 @@ exports.postApply = tryCatch(async(req,res,next)=>{
 
     return res.json({
         status:"succesfully applicant added",
-        // updatedData
+        updatedData
     })
 
 })
