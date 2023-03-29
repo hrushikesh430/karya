@@ -15,7 +15,7 @@ const sample = require('../controllers/sample');
 const employeeProfile = require('../controllers/employee/employeeProfile');
 const invitationList = require('../controllers/employee/invitationList')
 const employeeAboutMe = require('../controllers/employee/employeeAboutMe');
-// const employeerAboutMe = require('../controllers/employeerAboutMe');
+const recommendationList = require('../controllers/employee/recommendationList')
 const employeeSkills = require('../controllers/employee/employeeSkills');
 // const employeeProfileImg = require('../controllers/employee/employeeProfileImg');
 const multer = require("multer");
@@ -93,6 +93,9 @@ router.post('/apply',autheticationToken,apply.postApply)
 
 // list of invitaions
 router.get('/invitaionList',autheticationToken,invitationList.getInvitationList);
+
+// recommendation List
+router.get('/recommendationList',autheticationToken,recommendationList.getRecommendationList)
 
 router.get('/sample',autheticationToken,sample.getSample);
 

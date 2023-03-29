@@ -19,7 +19,7 @@ app.use(cookieParser());
 exports.getEmployeerAboutMe = tryCatch(async(req,res,next)=>{
    
     return res.json({
-        status:"success",
+        status:"successfully about Me sent",
         data:req.employeer[0].aboutMe
     })
 })
@@ -30,7 +30,7 @@ exports.postEmployeerAboutMe = tryCatch(async(req,res,next)=>{
 
     const data = await Employeer.findOneAndUpdate({email:req.employee[0].email},{aboutMe:req.body.aboutMe},{new:true})
     return res.json({
-        status:"succesfully profile updated",
+        status:"succesfully about me updated",
         data:data.aboutMe
     })
 

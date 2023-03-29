@@ -42,7 +42,7 @@ exports.getEmployeersPosts = tryCatch(async(req,res,next)=>{
        console.log(postData)
     }
     return res.json({
-        status:"success",
+        status:"successfully posts per employeer data sent",
       data:postData
     })
 })

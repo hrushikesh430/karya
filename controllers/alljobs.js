@@ -29,7 +29,7 @@ exports.postAllJobs = tryCatch(async(req,res,next)=>{
     const cnt = employerpost.length;
     let employersData =[];
     res.json({
-        status:"success",
+        status:"successfull all jobs data sent",
         cnt,
         jobPosts:employerpost
     })

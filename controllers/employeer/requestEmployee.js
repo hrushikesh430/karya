@@ -25,7 +25,7 @@ exports.postJobInvitaion= tryCatch(async(req,res,next)=>{
    
 
     res.json({
-        status:"successfully employee added to assigned List",
+        status:"successfully invited to employee for post",
         employeeData
     })
     

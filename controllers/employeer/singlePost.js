@@ -24,7 +24,7 @@ exports.postSinglePost= tryCatch(async(req,res,next)=>{
    
     const data = await JobPost.find({_id:req.body.postId});
     return res.json({
-        status:"succesfully profile updated",
+        status:"succesfully single post data sent",
         data:data[0]
     })
 })

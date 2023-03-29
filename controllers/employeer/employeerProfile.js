@@ -21,7 +21,7 @@ exports.getEmployeerProfile = tryCatch(async(req,res,next)=>{
     
 
     res.json({
-        status:"success",
+        status:"successfullr profile sent",
         data:req.employeer[0]
     })
 })
