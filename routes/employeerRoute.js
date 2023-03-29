@@ -19,6 +19,7 @@ const jobPostForm = require('../controllers/employeer/jobPostForm');
 const singlePost = require('../controllers/employeer/singlePost');
 const applicantList = require('../controllers/employeer/applicantList');
 const assignedList = require('../controllers/employeer/assignedList');
+const requestEmployee = require('../controllers/employeer/requestEmployee')
 const cookieParser = require("cookie-parser");
 
 
@@ -61,4 +62,7 @@ router.post('/applicantList',autheticationToken,applicantList.postApplicantList)
 
 // list the info of assigned employees
 router.post('/assignedList',autheticationToken,assignedList.postAssignedList);
+
+// request for job to employee
+router.post('/requestEmployee',autheticationToken,requestEmployee.postJobInvitaion);
 module.exports = router;   

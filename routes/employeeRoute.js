@@ -13,7 +13,7 @@ const Employeer = require('../models/Employeer');
 const autheticationToken = require('../middleware/authentication')
 const sample = require('../controllers/sample');
 const employeeProfile = require('../controllers/employee/employeeProfile');
-// const employeerProfile = require('../controllers/employeerProfile');
+const invitationList = require('../controllers/employee/invitationList')
 const employeeAboutMe = require('../controllers/employee/employeeAboutMe');
 // const employeerAboutMe = require('../controllers/employeerAboutMe');
 const employeeSkills = require('../controllers/employee/employeeSkills');
@@ -90,6 +90,9 @@ router.post('/apply',autheticationToken,apply.postApply)
 
 // profile image upload
 // router.post('/uploadProfileImg',upload.single('filename'),employeeProfileImg.postProfileImg);
+
+// list of invitaions
+router.get('/invitaionList',autheticationToken,invitationList.getInvitationList);
 
 router.get('/sample',autheticationToken,sample.getSample);
 
