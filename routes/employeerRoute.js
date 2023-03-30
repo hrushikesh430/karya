@@ -72,7 +72,7 @@ router.post('/requestEmployee',autheticationToken,requestEmployee.postJobInvitai
 
 // upload profile image
 router.get('/uploadProfileImg',autheticationToken,profileImg.getProfileImg);
-router.post('/uploadProfileImg',autheticationToken,upload('image'),profileImg.postProfileImg);
+router.post('/uploadProfileImg',autheticationToken,upload.single('image'),profileImg.postProfileImg);
 
 
 // remove employee from the assigned list
