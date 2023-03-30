@@ -9,6 +9,11 @@ const employee = new mongoose.Schema({
         type:String,
         required :[true,"Please provide your email"]  
     },
+    
+    profileImg:{
+        type:String
+    }
+    ,
     password:{
         type:String,
         required :[true,"Please provide your password"]  

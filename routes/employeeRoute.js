@@ -17,15 +17,14 @@ const invitationList = require('../controllers/employee/invitationList')
 const employeeAboutMe = require('../controllers/employee/employeeAboutMe');
 const recommendationList = require('../controllers/employee/recommendationList')
 const employeeSkills = require('../controllers/employee/employeeSkills');
-// const employeeProfileImg = require('../controllers/employee/employeeProfileImg');
-const multer = require("multer");
-const apply = require('../controllers/employee/apply');
-// const {getStorage,ref,getDownloadURL,uploadBytesResumable} = require("firebase/storage");
-// const profileFirebase = require('../../models/profileFirebase');
-// const storage = getStorage();
+const employeeProfileImg = require('../controllers/employee/employeeProfileImg')
 
-const upload = multer({storage:multer.memoryStorage()});
+const apply = require('../controllers/employee/apply');
+const multer  = require('multer')
+const { storage } = require('../cloudinary/index');
+const upload = multer({ storage });
 const cookieParser = require("cookie-parser");
+const { authenticate } = require("passport");
 // Body-parser middleware
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
@@ -89,7 +88,8 @@ router.post('/updateSkills',autheticationToken,employeeSkills.postEmployeeSkills
 router.post('/apply',autheticationToken,apply.postApply)
 
 // profile image upload
-// router.post('/uploadProfileImg',upload.single('filename'),employeeProfileImg.postProfileImg);
+router.get('/uploadProfileImg',autheticationToken,employeeProfileImg.getProfileImg);
+router.post('/uploadProfileImg',autheticationToken,upload.single('image'),employeeProfileImg.postProfileImg);
 
 // list of invitaions
 router.get('/invitaionList',autheticationToken,invitationList.getInvitationList);

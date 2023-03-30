@@ -17,6 +17,10 @@ const employee = new mongoose.Schema({
         type:Number,
         required:[true,"Please provide your email"]
     },
+    profileImg:{
+        type:String
+    }
+    ,
     jobInvitation:[
         {
             type:String

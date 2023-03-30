@@ -36,10 +36,15 @@ app.use(bodyParser.json());
 
 
 app.use(express.static(__dirname + "/public"));
-
 app.get('/',(req,res)=>{
-    res.send("Hello World");
+  res.send("successss")
 })
+
+const multer = require('multer');
+const { firebase } = require('googleapis/build/src/apis/firebase');
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
 
 
 
@@ -55,7 +60,7 @@ app.listen(PORT , (req,res)=>{
 })
 
 //middleware
-app.use(errorHandler);
+// app.use(errorHandler);
 app.use(routes);
 app.use('/employee',employeeRoute);
 app.use('/employeer',employeerRoute);

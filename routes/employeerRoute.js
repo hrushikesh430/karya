@@ -18,10 +18,14 @@ const employeerAboutMe = require('../controllers/employeer/employeerAboutMe');
 const jobPostForm = require('../controllers/employeer/jobPostForm');
 const singlePost = require('../controllers/employeer/singlePost');
 const applicantList = require('../controllers/employeer/applicantList');
+const removerEmployee = require('../controllers/employeer/removeEmployeeFromAssignedList');
 const assignedList = require('../controllers/employeer/assignedList');
-const requestEmployee = require('../controllers/employeer/requestEmployee')
+const requestEmployee = require('../controllers/employeer/requestEmployee');
+const profileImg = require('../controllers/employeer/employeerProfileImg');
 const cookieParser = require("cookie-parser");
-
+const multer  = require('multer')
+const { storage } = require('../cloudinary/index'); 
+const upload = multer({ storage });
 
 // Body-parser middleware
 app.use(bodyParser.urlencoded({extended:false}))
@@ -65,4 +69,12 @@ router.post('/assignedList',autheticationToken,assignedList.postAssignedList);
 
 // request for job to employee
 router.post('/requestEmployee',autheticationToken,requestEmployee.postJobInvitaion);
+
+// upload profile image
+router.get('/uploadProfileImg',autheticationToken,profileImg.getProfileImg);
+router.post('/uploadProfileImg',autheticationToken,upload('image'),profileImg.postProfileImg);
+
+
+// remove employee from the assigned list
+router.post('/removeEmployee',autheticationToken,removerEmployee.postRemoveEmployee);
 module.exports = router;   
