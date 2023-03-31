@@ -27,6 +27,14 @@ exports.postDeletePost= tryCatch(async(req,res,next)=>{
     }).catch((err)=>{
         console.log("error in deleting JobPost "+err);
     })
+    const employeeData = await Employee.find({});
+    const cnt = employeeData.length;
+    for(let i = 0 ; i < cnt ; i++)
+    {
+            await Employee.findOneAndUpdate({_id:employeeData[i]._id},{$pull :{
+                jobInvitation:req.body.postId
+            }});
+    }
     const EmployeerData = await JobPostPerEmployeer.findOneAndUpdate({employeerId:data[0]._id},{$pull:{jobPostsId:req.body.postId}},{new:true});
 
     res.json({

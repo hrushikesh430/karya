@@ -21,6 +21,7 @@ const employeeProfileImg = require('../controllers/employee/employeeProfileImg')
 const personalInfo = require('../controllers/employee/personalInfo')
 const allEmployeeInfo = require('../controllers/employee/allEmployeeInfo')
 const apply = require('../controllers/employee/apply');
+const removeSkills = require('../controllers/employee/removeSkills')
 const multer  = require('multer')
 const { storage } = require('../cloudinary/index');
 const upload = multer({ storage });
@@ -104,6 +105,9 @@ router.get('/personalInfo',autheticationToken,personalInfo.getEmployeeInfo);
 
 // all employee info
 router.get('/allEmployeeInfo',autheticationToken,allEmployeeInfo.getAllEmployeeInfo);
+
+// remove skills 
+router.post('/removeSkills',autheticationToken,removeSkills.postRemoveEmployeeSkills);
 
 router.get('/sample',autheticationToken,sample.getSample);
 

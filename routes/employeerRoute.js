@@ -81,4 +81,6 @@ router.post('/removeEmployee',autheticationToken,removerEmployee.postRemoveEmplo
 
 // personal info
 router.get('/personalInfo',autheticationToken,personalInfo.getEmployeerInfo);
+
+
 module.exports = router;   
