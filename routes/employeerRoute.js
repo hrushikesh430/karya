@@ -22,6 +22,7 @@ const removerEmployee = require('../controllers/employeer/removeEmployeeFromAssi
 const assignedList = require('../controllers/employeer/assignedList');
 const requestEmployee = require('../controllers/employeer/requestEmployee');
 const profileImg = require('../controllers/employeer/employeerProfileImg');
+const personalInfo = require('../controllers/employeer/personalInfo')
 const cookieParser = require("cookie-parser");
 const multer  = require('multer')
 const { storage } = require('../cloudinary/index'); 
@@ -77,4 +78,7 @@ router.post('/uploadProfileImg',autheticationToken,upload.single('image'),profil
 
 // remove employee from the assigned list
 router.post('/removeEmployee',autheticationToken,removerEmployee.postRemoveEmployee);
+
+// personal info
+router.get('/personalInfo',autheticationToken,personalInfo.getEmployeerInfo);
 module.exports = router;   

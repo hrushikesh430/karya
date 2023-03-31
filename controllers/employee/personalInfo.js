@@ -10,32 +10,19 @@ const AppError = require("../../utils/AppError");
 const jwt = require("jsonwebtoken")
 const Employee = require('../../models/Employee');
 const Employeer = require('../../models/Employeer');
-const JobPost = require('../../models/jobPost');
 
 // Body-parser middleware
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 app.use(cookieParser());
 
-exports.getInvitationList = tryCatch(async(req,res,next)=>{
-  
-    const data = await Employee.find({email:req.employee[0].email});
+exports.getEmployeeInfo = tryCatch(async(req,res,next)=>{
 
-    const len = data[0].jobInvitation.length;
-
-    let invitationData = [];
-
-    for(let i = 0 ; i < len ; i++)
-    {
-        let temp = await JobPost.find({_id:data[0].jobInvitation[i]});
-        if(temp[0] != null){
-        invitationData.push(temp[0]);
-        }
-    }
-
-    return res.json({
+   const data= await Employee.find({email:req.employee[0].email});
+        return res.json({
         status:"success",
-        data:invitationData
+        data:data[0]
     })
 })
+
 

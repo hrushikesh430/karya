@@ -18,7 +18,8 @@ const employeeAboutMe = require('../controllers/employee/employeeAboutMe');
 const recommendationList = require('../controllers/employee/recommendationList')
 const employeeSkills = require('../controllers/employee/employeeSkills');
 const employeeProfileImg = require('../controllers/employee/employeeProfileImg')
-
+const personalInfo = require('../controllers/employee/personalInfo')
+const allEmployeeInfo = require('../controllers/employee/allEmployeeInfo')
 const apply = require('../controllers/employee/apply');
 const multer  = require('multer')
 const { storage } = require('../cloudinary/index');
@@ -96,6 +97,13 @@ router.get('/invitaionList',autheticationToken,invitationList.getInvitationList)
 
 // recommendation List
 router.get('/recommendationList',autheticationToken,recommendationList.getRecommendationList)
+
+
+// personal Info
+router.get('/personalInfo',autheticationToken,personalInfo.getEmployeeInfo);
+
+// all employee info
+router.get('/allEmployeeInfo',autheticationToken,allEmployeeInfo.getAllEmployeeInfo);
 
 router.get('/sample',autheticationToken,sample.getSample);
 
