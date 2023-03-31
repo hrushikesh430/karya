@@ -20,7 +20,7 @@ app.use(cookieParser());
 exports.getEmployeeInfo = tryCatch(async(req,res,next)=>{
 
     
-    const data= await Employee.find({email:req.employee[0].email});
+    let data= await Employee.find({email:req.employee[0].email});
     const jobData = await JobPost.find({});
     const cnt = jobData.length;
     const assignedData  = [];
@@ -31,12 +31,28 @@ exports.getEmployeeInfo = tryCatch(async(req,res,next)=>{
             assignedData.push(jobData[i]);
         }
     }
-
+    let tempData=data[0];
+    tempData.assignedData = assignedData
+    console.log(tempData.assignedData)
         return res.json({
         status:"successfully personal infor sent",
         data:{
-            personalInfo:data[0],
-            assignedData
+            location:tempData.location,
+            _id:tempData._id,
+            name:tempData.name,
+            email:tempData.email,
+            password:tempData.password,
+            phone:tempData.phone,
+            occupation:tempData.occuopation,
+            address:tempData.address,
+            aboutMe:tempData.aboutMe,
+            loginTime:tempData.loginTime,
+            skills:tempData.skills,
+            __v:tempData.__v,
+            jobInvitaiton:tempData.jobInvitation,
+            profileImg:tempData.profileImg,
+            facebook:tempData.facebook,
+            assignedData:tempData.assignedData
         }
     })
 })
