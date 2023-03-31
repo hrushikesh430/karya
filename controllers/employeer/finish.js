@@ -33,7 +33,9 @@ exports.postFinishJobPost = tryCatch(async(req,res,next)=>{
     const data = await JobPost.find({_id:req.body.postId});
     await JobPost.findOneAndDelete({_id:req.body.postId});
     const finishData = new Finish({workName:data[0].workName,workAddress:data[0].workAddress,workDuration:data[0].workDuration,workTime:data[0].workTime,workFrom:data[0].workFrom,location:{type:"Point",coordinates:[data[0].location.coordinates[0],data[0].location.coordinates[1]]},employeerId:data[0].employeerId,postTime:data[0].postTime,workDescription:data[0].workDescription,employeerName:data[0].employeerName})
-
+    finishData.applicationId = data[0].applicationId;
+    finishData.assignedId = data[0].assignedId;
+    finishData.save();
     return res.json({
         status:"succesfully finished job posted",
        
