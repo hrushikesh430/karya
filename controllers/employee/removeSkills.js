@@ -31,7 +31,7 @@ exports.postRemoveEmployeeSkills = tryCatch(async(req,res,next)=>{
     const data = await Employee.findOneAndUpdate({email:req.employee[0].email},{$pull :{skills:req.body.skills}},{new:true});
     
     return res.json({
-        status:"succesfully profile updated",
-        data:data.skills
+        status:"succesfully skill deleted",
+    
     })
 })
