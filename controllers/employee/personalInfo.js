@@ -18,10 +18,23 @@ app.use(cookieParser());
 
 exports.getEmployeeInfo = tryCatch(async(req,res,next)=>{
 
-   const data= await Employee.find({email:req.employee[0].email});
+    
+    const data= await Employee.find({email:req.employee[0].email});
+    const jobData = await JobPost.find({});
+    const cnt = jobData.length;
+    const assignedData  = [];
+    for(let i = 0 ; i < cnt ; i++)
+    {
+        if(jobData[i].assignedId.includes(data[0]._id))
+        {
+            assignedData.push(jobData[i]);
+        }
+    }
+
         return res.json({
-        status:"success",
-        data:data[0]
+        status:"successfully personal infor sent",
+        data:data[0],
+        assignedJobs:assignedData
     })
 })
 
