@@ -81,27 +81,27 @@ function similar_text(first, second, percent) {
   }
 exports.getRecommendationList = tryCatch(async(req,res,next)=>{
   
+  const jobPost = await JobPost.find({});
     const data = await Employee.find({email:req.employee[0].email});
     const skillsLength = data[0].skills.length;
     
-    const jobPost = await JobPost.find({});
     const cnt = jobPost.length;
     let recommendationData = [];
-   
+  //  (similar_text(data[0].skills[i].toLowerCase(),jobPost[j].workName.toLowerCase() > 3))
     for(let i = 0 ; i < skillsLength ; i++)
     {
         for(let j = 0 ; j < cnt ; j++)
         {
-            if((longest_common_starting_substring([data[0].skills[i].toLowerCase(),jobPost[j].workName.toLowerCase()]).length > 3)||
-                (similar_text(data[0].skills[i].toLowerCase(),jobPost[j].workName.toLowerCase() > 3)))
+            if((longest_common_starting_substring([data[0].skills[i].toLowerCase(),jobPost[j].workName.toLowerCase()]).length > 3) )
             {
-
+                
                 recommendationData.push(jobPost[j]);
+               
             }
         }
     }
     return res.json({
-        status:"success",   
+        status:"successfully sent recommendation Data",   
         recommendationData
     })
 })

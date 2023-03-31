@@ -34,8 +34,10 @@ exports.getEmployeeInfo = tryCatch(async(req,res,next)=>{
 
         return res.json({
         status:"successfully personal infor sent",
-        data:data[0],
-        assignedJobs:assignedData
+        data:{
+            personalInfo:data[0],
+            assignedData
+        }
     })
 })
 
