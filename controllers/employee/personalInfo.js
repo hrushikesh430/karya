@@ -10,6 +10,7 @@ const AppError = require("../../utils/AppError");
 const jwt = require("jsonwebtoken")
 const Employee = require('../../models/Employee');
 const Employeer = require('../../models/Employeer');
+const JobPost = require('../../models/jobPost')
 
 // Body-parser middleware
 app.use(bodyParser.urlencoded({extended:false}))
