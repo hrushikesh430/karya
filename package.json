@@ -33,6 +33,7 @@
     "nodemon": "^2.0.21",
     "passport": "^0.6.0",
     "passport-google-oauth": "^2.0.0",
+    "twilio": "^4.10.0",
     "uuid": "^9.0.0",
     "uuid-v4": "^0.1.0",
     "xhr2": "^0.2.1"

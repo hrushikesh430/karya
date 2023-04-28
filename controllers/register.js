@@ -24,7 +24,7 @@ exports.getRegister = tryCatch(async(req,res,next)=>{
  });
  
 
- exports.postRegister = tryCatch(async(req,res,next)=>{
+exports.postRegister = tryCatch(async(req,res,next)=>{
     console.log(req.body)
    const {name,email,password,phone,Type} = req.body;
    
