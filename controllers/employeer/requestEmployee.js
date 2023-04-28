@@ -12,8 +12,8 @@ const Employee = require("../../models/Employee");
 const Employeer = require("../../models/Employeer");
 const JobPost = require("../../models/jobPost");
 const JobPostPerEmployeer = require("../../models/jobPostPerEmployeer");
-const accountSid = "AC92293dcda3bc076860b99e1b1ef7e7d0";
-const authToken = "f69231ed5b8760cc783589e8958ecd9b";
+const accountSid = process.env.accountSid;
+const authToken = process.env.authToken;
 const client = require("twilio")(accountSid, authToken);
 // Body-parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -26,18 +26,26 @@ exports.postJobInvitaion = tryCatch(async (req, res, next) => {
     { $push: { jobInvitation: req.body.postId } },
     { new: true }
   );
-  const phone = employeeData[0].phone;
+  const jobData = await JobPost.find({ _id: req.body.postId });
+  const phone = employeeData.phone;
+
+  // client.messages
+  //   .create({
+  //     body: "You have got invitation for Job",
+  //     from: "whatsapp:+14155238886",
+  //     to: `whatsapp:+91${phone}`,
+  //   })
+  //   .then((message) => console.log(message));
+
+  const client = require("twilio")(accountSid, authToken);
 
   client.messages
     .create({
-      body: "You have got invitation for Job",
       from: "whatsapp:+14155238886",
       to: `whatsapp:+91${phone}`,
+      body: `You have got invitation for ${jobData[0].workName} from Employer - ${jobData[0].employeerName}`,
     })
-    .then((message) => console.log(message));
-  res.json({
-    status: "success",
-  });
+    .then((message) => console.log(message.sid));
 
   res.json({
     status: "successfully invited to employee for post",
