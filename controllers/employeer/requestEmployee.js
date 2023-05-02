@@ -38,12 +38,22 @@ exports.postJobInvitaion = tryCatch(async (req, res, next) => {
   //   .then((message) => console.log(message));
 
   const client = require("twilio")(accountSid, authToken);
-
+    const data = jobData[0];
   client.messages
     .create({
       from: "whatsapp:+14155238886",
-      to: `whatsapp:+91${phone}`,
-      body: `You have got invitation for ${jobData[0].workName} from Employer - ${jobData[0].employeerName}`,
+      to: `whatsapp:+917249188337`,
+      body: `You have got invitation for ${jobData[0].workName} from Employer - ${jobData[0].employeerName}
+
+      Here are Job details - 
+
+      Job Name - ${jobData[0].workName}
+      Work Time - ${jobData[0].workTime}
+      work duration - ${data.workDuration}
+      Description - ${data.workDescription}
+      work from - ${data.workFrom}
+      Address - ${data.workAddress}
+      `,
     })
     .then((message) => console.log(message.sid));
 
