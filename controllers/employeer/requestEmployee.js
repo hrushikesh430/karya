@@ -42,7 +42,7 @@ exports.postJobInvitaion = tryCatch(async (req, res, next) => {
   client.messages
     .create({
       from: "whatsapp:+14155238886",
-      to: `whatsapp:+917249188337`,
+      to: `whatsapp:+91${data.phone}`,
       body: `You have got invitation for ${jobData[0].workName} from Employer - ${jobData[0].employeerName}
 
       Here are Job details - 
