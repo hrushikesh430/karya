@@ -29,9 +29,11 @@ exports.postSearchWork = tryCatch(async(req,res,next)=>{
 
     for(let i = 0 ; i < works.length ; i++)
     {
-        if(works[i].includes(text))
+        let str = works[i].workName.toLowerCase();
+        let sub_str = text.toLowerCase();
+        if(str.includes(sub_str))
         {
-            data.append(works[i]);
+            data.push(works[i]);
         }
     }
     
